@@ -4,7 +4,6 @@ const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('data.db');
 
-
 client.once('ready', () => {
 	console.log('Ready');
 });
