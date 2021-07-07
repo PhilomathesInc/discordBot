@@ -21,7 +21,7 @@ const db = new sqlite3.Database(dbPath);
 
 const logger = pino(
 	{ level: process.env.LOG_LEVEL || 'info' },
-	pino.destination()
+	pino.destination(logPath)
 );
 
 const client = new Discord.Client();
