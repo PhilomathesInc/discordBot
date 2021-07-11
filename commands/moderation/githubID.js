@@ -2,7 +2,7 @@ const {asyncDbRun, ensureUserInDB} = require('../../lib/database');
 
 const addGitHubID = async(message, db, logger, args) => {
 	return new Promise(function(resolve, reject) {
-		ensureUserInDB(message, db, logger, args)
+		ensureUserInDB(message.author.id, db, logger)
 			.then(() => {
 				logger.info(`Update user entry: ${message.author.id} with GitHub ID: ${args[0]}`);
 				asyncDbRun(db, 'UPDATE users SET github_id=$github_id WHERE id=$id;',{$github_id: args[0],$id: message.author.id})

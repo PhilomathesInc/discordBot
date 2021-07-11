@@ -2,7 +2,7 @@ const {asyncDbRun, ensureUserInDB} = require('../../lib/database');
 
 const addEmailID = async(message, db, logger, args) => {
 	return new Promise(function(resolve, reject) {
-		ensureUserInDB(message, db, logger, args)
+		ensureUserInDB(message.author.id, db, logger, args)
 			.then(() => {
 				logger.info(`Update user entry: ${message.author.id} with Email ID: ${args[0]}`);
 				asyncDbRun(db, 'UPDATE users SET email_id=$email_id WHERE id=$id;',{$email_id: args[0],$id: message.author.id})
